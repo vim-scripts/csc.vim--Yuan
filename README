@@ -1,0 +1,12 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=3385
+
+Essbase script syntax file (csc.vim)
+
+Based on: Raul Segura Acevedo <raulseguraaceved@netscape.net>
+
+Enhancements:
+
+* FIX...ENDFIX : lightcyan
+* Substitution Variable : Identifier
+* Cross Dimension Operator : Special
+* Ess_LOCALE : Comment
