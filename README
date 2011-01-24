@@ -1,12 +1,14 @@
 This is a mirror of http://www.vim.org/scripts/script.php?script_id=3385
 
-Essbase script syntax file (csc.vim)
-
-Based on: Raul Segura Acevedo <raulseguraaceved@netscape.net>
+Essbase script syntax file, with several bug fixes, improvements and additions.  Should be up-to-date with all features of Essbase 9.  If anything is missing, broken, not working well on your setup, or an inconvenience for you, please let me know, all feedback is welcome: <yyq123 at gmail.com>.
 
 Enhancements:
-
+-------------
 * FIX...ENDFIX : lightcyan
 * Substitution Variable : Identifier
 * Cross Dimension Operator : Special
 * Ess_LOCALE : Comment
+
+Screenshots:
+-------------
+http://www.flickr.com/photos/yyq123/5382671335/

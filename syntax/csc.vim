@@ -1,7 +1,7 @@
 " Vim syntax file
 " Language: Essbase script
-" Maintainer: Anthony Yuan <yyq123@gmail.com>
-" Last change: 2010 Dec 28	
+" Maintainer: Anthony Yuan <yyq123@gmail.com> <http://yyq123.blogspot.com/>
+" Last change: 2011 Jan 21	
 " Based on: Raul Segura Acevedo <raulseguraaceved@netscape.net> Last change:	2001 Sep 25
 
 " For version 5.x: Clear all syntax items
@@ -14,7 +14,6 @@ endif
 
 " folds: fix/endfix and comments
 sy	region	EssFold start="\<Fix" end="EndFix" transparent fold
-sy	match	cscFix	"FIX\|ENDFIX"
 
 sy	keyword	cscTodo contained TODO FIXME XXX
 
@@ -59,47 +58,52 @@ sy	match	cscFloat	contained "\d\+e[-+]\=\d\+[fl]\=\>"
 sy	region	cscComment	start="/\*" end="\*/" contains=@cscCommentGroup,cscSpaceE fold
 sy	match	cscCommentE	"\*/"
 
+sy	match	cscFix	"FIX\|ENDFIX"
+
 "substitution variable
 sy	region	cscSubVar	start="&" end="\>"he=s-1 
 
 "cross-dimension operator
 sy	match	cscCrossDimen	"->"
 
-sy	keyword	cscIfError	IF ELSE ENDIF ELSEIF
+"sy	keyword	cscIfError	IF ELSE ENDIF ELSEIF
+sy	keyword	cscCondition	IF ELSE ENDIF ELSEIF
 sy	keyword	cscCondition	contained IF ELSE ENDIF ELSEIF
-sy	keyword	cscFunction	contained VARPER VAR UDA TRUNCATE SYD SUMRANGE SUM
+sy	keyword	cscFunction	contained VARPER VAR UDA TRUNCATE SYD SUMRANGE SUM CALCMODE
 sy	keyword	cscFunction	contained STDDEVRANGE STDDEV SPARENTVAL SLN SIBLINGS SHIFT
 sy	keyword	cscFunction	contained SANCESTVAL RSIBLINGS ROUND REMAINDER RELATIVE PTD
-sy	keyword	cscFunction	contained PRIOR POWER PARENTVAL NPV NEXT MOD MINRANGE MIN
-sy	keyword	cscFunction	contained MDSHIFT MDPARENTVAL MDANCESTVAL MAXRANGE MAX MATCH
-sy	keyword	cscFunction	contained LSIBLINGS LEVMBRS LEV
+sy	keyword	cscFunction	contained PRIOR POWER PARENT PARENTVAL NPV NEXT MOD MINRANGE MIN
+sy	keyword	cscFunction	contained MDSHIFT MDPARENTVAL MDANCESTVAL MAXRANGE MAX MATCH COUNT
+sy	keyword	cscFunction	contained LSIBLINGS LEVMBRS LEV CURRMBR RANGE
 sy	keyword	cscFunction	contained ISUDA ISSIBLING ISSAMELEV ISSAMEGEN ISPARENT ISMBR
 sy	keyword	cscFunction	contained ISLEV ISISIBLING ISIPARENT ISIDESC ISICHILD ISIBLINGS
 sy	keyword	cscFunction	contained ISIANCEST ISGEN ISDESC ISCHILD ISANCEST ISACCTYPE
 sy	keyword	cscFunction	contained IRSIBLINGS IRR INTEREST INT ILSIBLINGS IDESCENDANTS RDESCENDANTS
 sy	keyword	cscFunction	contained ICHILDREN IANCESTORS IALLANCESTORS
+sy	keyword	cscFunction	contained ISATTRIBUTE 
 sy	keyword	cscFunction	contained GROWTH GENMBRS GEN FACTORIAL DISCOUNT DESCENDANTS
 sy	keyword	cscFunction	contained DECLINE CHILDREN CURRMBRRANGE CURLEV CURGEN
 sy	keyword	cscFunction	contained COMPOUNDGROWTH COMPOUND AVGRANGE AVG ANCESTVAL
-sy	keyword	cscFunction	contained ANCEST ANCESTORS ALLANCESTORS ACCUM ABS  ATTRIBUTE
-sy	keyword	cscFunction	contained REMOVE LIST
+sy	keyword	cscFunction	contained ANCEST ANCESTORS ALLANCESTORS ACCUM ABS ATTRIBUTE ATTRIBUTEBVAL
+sy	keyword	cscFunction	contained REMOVE LIST XREF
 sy	keyword	cscFunction	contained MEMBER NAME CONCATENATE SUBSTRING
-sy	keyword	cscFunction	contained @VARPER @VAR @UDA @TRUNCATE @SYD @SUMRANGE @SUM
+sy	keyword	cscFunction	contained @VARPER @VAR @UDA @TRUNCATE @SYD @SUMRANGE @SUM @CALCMODE
 sy	keyword	cscFunction	contained @STDDEVRANGE @STDDEV @SPARENTVAL @SLN @SIBLINGS @SHIFT
 sy	keyword	cscFunction	contained @SANCESTVAL @RSIBLINGS @ROUND @REMAINDER @RELATIVE @PTD
-sy	keyword	cscFunction	contained @PRIOR @POWER @PARENTVAL @NPV @NEXT @MOD @MINRANGE @MIN
-sy	keyword	cscFunction	contained @MDSHIFT @MDPARENTVAL @MDANCESTVAL @MAXRANGE @MAX @MATCH
-sy	keyword	cscFunction	contained @LSIBLINGS @LEVMBRS @LEV
+sy	keyword	cscFunction	contained @PRIOR @POWER @PARENT @PARENTVAL @NPV @NEXT @MOD @MINRANGE @MIN
+sy	keyword	cscFunction	contained @MDSHIFT @MDPARENTVAL @MDANCESTVAL @MAXRANGE @MAX @MATCH @COUNT
+sy	keyword	cscFunction	contained @LSIBLINGS @LEVMBRS @LEV @CURRMBR @RANGE
 sy	keyword	cscFunction	contained @ISUDA @ISSIBLING @ISSAMELEV @ISSAMEGEN @ISPARENT @ISMBR
 sy	keyword	cscFunction	contained @ISLEV @ISISIBLING @ISIPARENT @ISIDESC @ISICHILD @ISIBLINGS
 sy	keyword	cscFunction	contained @ISIANCEST @ISGEN @ISDESC @ISCHILD @ISANCEST @ISACCTYPE
 sy	keyword	cscFunction	contained @IRSIBLINGS @IRR @INTEREST @INT @ILSIBLINGS @IDESCENDANTS @RDESCENDANTS
 sy	keyword	cscFunction	contained @ICHILDREN @IANCESTORS @IALLANCESTORS
+sy	keyword	cscFunction	contained @ISATTRIBUTE 
 sy	keyword	cscFunction	contained @GROWTH @GENMBRS @GEN @FACTORIAL @DISCOUNT @DESCENDANTS
 sy	keyword	cscFunction	contained @DECLINE @CHILDREN @CURRMBRRANGE @CURLEV @CURGEN
 sy	keyword	cscFunction	contained @COMPOUNDGROWTH @COMPOUND @AVGRANGE @AVG @ANCESTVAL
-sy	keyword	cscFunction	contained @ANCEST @ANCESTORS @ALLANCESTORS @ACCUM @ABS @ATTRIBUTE
-sy	keyword	cscFunction	contained @REMOVE @LIST
+sy	keyword	cscFunction	contained @ANCEST @ANCESTORS @ALLANCESTORS @ACCUM @ABS @ATTRIBUTE @ATTRIBUTEBVAL
+sy	keyword	cscFunction	contained @REMOVE @LIST @XREF
 sy	keyword	cscFunction	contained @MEMBER @NAME @CONCATENATE @SUBSTRING
 sy	match	cscFunction	contained "@"
 sy	match	cscError	"@\s*\a*" contains=cscFunction
@@ -109,6 +113,7 @@ sy	region	cscLocal	start="//ESS_LOCALE" end="@Binary"
 "sy	match	cscStatement	"&"
 
 sy	keyword	cscStatement	AGG ARRAY VAR CCONV CLEARDATA DATACOPY RUNJAVA
+sy	keyword	cscCom	LOOP ENDLOOP
 
 sy	match	cscComE	contained "^\s*CALC.*"
 sy	match	cscComE	contained "^\s*CLEARBLOCK.*"
@@ -117,7 +122,6 @@ sy	match	cscComE	contained "^\s*FIX"
 sy	match	cscComE	contained "^\s*ENDFIX"
 sy	match	cscComE	contained "^\s*ENDLOOP"
 sy	match	cscComE	contained "^\s*LOOP"
-" sy	keyword	cscCom	FIX ENDFIX LOOP ENDLOOP
 
 sy	match	cscComW	"^\s*CALC.*"
 sy	match	cscCom	"^\s*CALC\s*ALL"
@@ -137,8 +141,12 @@ sy	match	cscCom	"^\s*\<SET\s\+Commands"
 sy	match	cscCom	"^\s*\<SET\s\+AGGMISSG"
 sy	match	cscCom	"^\s*\<SET\s\+CACHE"
 sy	match	cscCom	"^\s*\<SET\s\+CALCHASHTBL"
+sy	match	cscCom	"^\s*\<SET\s\+CALCPARALLEL"
+sy	match	cscCom	"^\s*\<SET\s\+CALCTASKDIMS"
+sy	match	cscCom	"^\s*\<SET\s\+CCTRACKCALC"
 sy	match	cscCom	"^\s*\<SET\s\+CLEARUPDATESTATUS"
 sy	match	cscCom	"^\s*\<SET\s\+CREATEBLOCKONEQ"
+sy	match	cscCom	"^\s*\<SET\s\+CREATENONMISSINGBLK"
 sy	match	cscCom	"^\s*\<SET\s\+FRMLBOTTOMUP"
 sy	match	cscCom	"^\s*\<SET\s\+LOCKBLOCK"
 sy	match	cscCom	"^\s*\<SET\s\+MSG"
@@ -182,7 +190,9 @@ if version >= 508 || !exists("did_csc_syntax_inits")
 	endif
 
 	hi cscVarName term=bold ctermfg=9 gui=bold guifg=blue
-	hi cscFix ctermfg=lightcyan guifg=#E0FFFF
+	hi cscCondition ctermfg=lightcyan guifg=#E0FFFF
+	hi cscFix ctermfg=cyan guifg=#00FFFF
+
 	HiLink	cscNumber	Number
 	HiLink	cscOctal	Number
 	HiLink	cscFloat	Float
@@ -197,7 +207,6 @@ if version >= 508 || !exists("did_csc_syntax_inits")
 	HiLink	cscIfError	Error
 	HiLink	cscEqError	Error
 	HiLink	cscFunction	Statement
-	HiLink	cscCondition	Statement
 	HiLink	cscWarn		WarningMsg
 
 	HiLink	cscComE	Error
